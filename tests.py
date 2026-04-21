@@ -63,6 +63,13 @@ class TestBooksCollector:
 
     def test_get_books_for_children(self):
         collector = BooksCollector()
+        collector.add_new_book("Золушка")
+        collector.set_book_genre("Золушка", "Мультфильмы")
+        children_books = collector.get_books_for_children()
+        assert "Золушка" in children_books
+
+    def test_books_with_age_rating_not_shown_to_children(self):
+        collector = BooksCollector()
         collector.add_new_book("Оно")
         collector.set_book_genre("Оно", "Ужасы")
         children_books = collector.get_books_for_children()
@@ -71,14 +78,12 @@ class TestBooksCollector:
     def test_add_book_in_favorites(self):
         collector = BooksCollector()
         collector.add_new_book("Король Лев")
-        collector.set_book_genre("Король Лев", "Мультфильмы")
         collector.add_book_in_favorites("Король Лев")
         assert "Король Лев" in collector.get_list_of_favorites_books()
 
     def test_delete_book_from_favorites(self):
         collector = BooksCollector()
         collector.add_new_book("Король Лев")
-        collector.set_book_genre("Король Лев", "Мультфильмы")
         collector.add_book_in_favorites("Король Лев")
         collector.delete_book_from_favorites("Король Лев")
         assert "Король Лев" not in collector.get_list_of_favorites_books()
@@ -86,6 +91,5 @@ class TestBooksCollector:
     def test_get_list_of_favorites_books(self):
         collector = BooksCollector()
         collector.add_new_book("Двенадцать стульев")
-        collector.set_book_genre("Двенадцать стульев", "Комедии")
         collector.add_book_in_favorites("Двенадцать стульев")
         assert "Двенадцать стульев" in collector.get_list_of_favorites_books()

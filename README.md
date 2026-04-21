@@ -32,6 +32,9 @@ test_get_books_with_specific_genre
 test_get_books_for_children
 Проверяет, что книги с возрастным рейтингом (Ужасы, Детективы) не попадают в список книг для детей.
 
+def test_get_books_for_children
+Проверяет, что книга находится в списке детских книг
+
 - Избранное
 
 test_add_book_in_favorites
